@@ -22,10 +22,10 @@
 
 CurveAgent::CurveAgent()
 {
-	_enabled = false;
+	_enabled = true;
 
 	// Set curve type here
-	curve.setType(Util::hermiteCurve);
+	curve.setType(Util::catmullCurve);
 }
 
 CurveAgent::~CurveAgent()
