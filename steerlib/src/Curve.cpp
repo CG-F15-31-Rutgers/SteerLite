@@ -96,9 +96,21 @@ bool equalCheck(CurvePoint a, CurvePoint b)
 // Sort controlPoints vector in ascending order: min-first
 void Curve::sortControlPoints()
 {
+<<<<<<< HEAD
 	
 	std::sort(controlPoints.begin(), controlPoints.end(), compare);
 	controlPoints.erase(unique(controlPoints.begin(), controlPoints.end(), equalCheck), controlPoints.end());
+=======
+	//================DELETE THIS PART AND THEN START CODING===================
+	static bool flag = false;
+	if (!flag)
+	{
+		//std::cerr << "ERROR>>>>Member function sortControlPoints is not implemented!" << std::endl;
+		flag = true;
+	}
+	//=========================================================================
+
+>>>>>>> 052a627bf3505774e955b54d564d5470c78f7047
 	return;
 }
 
@@ -243,6 +255,11 @@ Point Curve::useCatmullCurve(const unsigned int nextPoint, const float time)
 	d = (pow(rate, 3)) - (pow(rate, 2));
 
 	// Return result
+<<<<<<< HEAD
 	return (a * controlPoints[nextPoint - 1].position) + (b*controlPoints[nextPoint].position) + (c*s0*deltaT) + (d*s1*deltaT);
 
 }
+=======
+	return newPosition;
+}
+>>>>>>> 052a627bf3505774e955b54d564d5470c78f7047
