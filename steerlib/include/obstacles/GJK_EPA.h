@@ -129,6 +129,56 @@ namespace SteerLib
             static bool intersect(float& return_penetration_depth, Util::Vector& return_penetration_vector, const std::vector<Util::Vector>& _shapeA, const std::vector<Util::Vector>& _shapeB);
 
         private:
+			/**
+			* This runs the GJK algorithm and determines if there is an intersection between two shapes.
+			* Returns true if there is an intersection between shapeA and shapeB, false otherwise
+			* PARAM shapeA: a vector containing the points that define the first shape
+			* PARAM shapeB: a vector containing the points that define the second shape
+			*/
+			static bool GJK(const std::vector<Util::Vector>& shapeA, const std::vector<Util::Vector>& shapeB);
+
+			/**
+			* Checks if the simplex contains the origin, and updates the direction if it does not.
+			* Returns true if the simplex contains the origin, false otherwise. Updates the direction to be a vector perpendicular
+			* to the edge closest to the origin, in the direction of the origin.
+			* PARAM simplex: A vector containing the points that define the current simplex, up to 3 points large.
+			* PARAM direction: A vector describing the direction in which we searched for the last point added to the simplex.
+			*
+			*/
+			static bool containsOrigin(std::vector<Util::Vector>& simplex, Util::Vector& direction);
+
+			/**
+			* This function finds a point on the simplex using the given direction.
+			* Returns a point from the simplex furthest in the given direction.
+			* PARAM shapeA: a vector containing the points that define the first shape.
+			* PARAM shapeB: a vector containing the points that define the second shape.
+			* PARAM direction: a vector that represents the direction in which we are searching.
+			*
+			*/
+			static Util::Vector support(const std::vector<Util::Vector>& shapeA, const std::vector<Util::Vector>& shapeB, const Util::Vector& direction);
+
+			/**
+			* This function gets the center of a given shape.
+			* PARAM shape: a vector containing the points that define the shape.
+			* Returns a point representing the center of the shape.
+			*/
+			static Util::Vector shapeCenter(const std::vector<Util::Vector>& shape);
+
+			/**
+			* This function finds the point furthest along a polygon in a given direction.
+			* Returns the point furthest along a polygon in the given direction.
+			* PARAM shape: a vector containing the points that define the shape.
+			* PARAM direction: A vector that represents the direction in which we are searching.
+			*/
+			static Util::Vector furthestPointInDirection(const std::vector<Util::Vector>& shape, const Util::Vector& direction);
+
+			/**
+			* Calculates the dot product of two vectors.
+			* Returns the dot product of the two vectors.
+			* PARAM vectorA: the first vector
+			* PARAM vectorB: the second vector	
+			*/
+			static float dotProduct(const Util::Vector& vectorA, const Util::Vector& vectorB);
 
     }; // class GJK_EPA
 
