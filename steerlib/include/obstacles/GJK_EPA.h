@@ -134,8 +134,9 @@ namespace SteerLib
 			* Returns true if there is an intersection between shapeA and shapeB, false otherwise.
 			* PARAM shapeA: a vector containing the points that define the first shape.
 			* PARAM shapeB: a vector containing the points that define the second shape.
+			* PARAM simplex: an empty vector in which the last three points from the simplex will be stored.
 			*/
-			static bool GJK(const std::vector<Util::Vector>& shapeA, const std::vector<Util::Vector>& shapeB);
+			static bool GJK(const std::vector<Util::Vector>& shapeA, const std::vector<Util::Vector>& shapeB, std::vector<Util::Vector>& simplex);
 
 			/**
 			* Checks if the simplex contains the origin, and updates the direction if it does not.
@@ -173,12 +174,16 @@ namespace SteerLib
 			static Util::Vector furthestPointInDirection(const std::vector<Util::Vector>& shape, const Util::Vector& direction);
 
 			/**
-			* Calculates the dot product of two vectors.
-			* Returns the dot product of the two vectors.
-			* PARAM vectorA: the first vector
-			* PARAM vectorB: the second vector	
+			* Runs the EPA algorithm.
+			* Returns the penetration depth and pentration vector.
+			* PARAM shapeA: a vector containing the points that define the first shape.
+			* PARAM shapeB: a vector containing the points that define the second shape.
+			* PARAM simplex: an empty vector in which the last three points from the simplex will be stored.
 			*/
-			static float dotProduct(const Util::Vector& vectorA, const Util::Vector& vectorB);
+			static void EPA(float& penetration_depth, Util::Vector& penetration_vector, const std::vector<Util::Vector>& shapeA, const std::vector<Util::Vector>& shapeB, std::vector<Util::Vector>& simplex);
+	
+
+			
 
     }; // class GJK_EPA
 
@@ -186,3 +191,5 @@ namespace SteerLib
 
 
 #endif /* GJK_EPA_H_ */
+
+
