@@ -288,7 +288,7 @@ Util::Vector SocialForcesAgent::calcProximityForce(float dt)
 Vector SocialForcesAgent::calcGoalForce(Vector _goalDirection, float _dt)
 {
 	
-	return MASS * ((PREFERED_SPEED * _goalDirection - velocity()) / (_SocialForcesParams.sf_acceleration / _dt));
+	return (MASS * ((PREFERED_SPEED * _goalDirection - velocity()) / ((_SocialForcesParams.sf_acceleration /10)/ _dt)));
 }
 
 
