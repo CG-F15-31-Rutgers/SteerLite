@@ -611,7 +611,10 @@ void SocialForcesAgent::updateAI(float timeStamp, float dt, unsigned int frameNu
 
 	Util::Vector acceleration = (prefForce + repulsionForce + proximityForce) / AGENT_MASS;
 	_velocity = velocity() + acceleration * dt;
+<<<<<<< HEAD
 
+=======
+>>>>>>> a217a038e8b678d5eec28f365f8dcb4e02beaa77
 	_velocity = clamp(velocity(), _SocialForcesParams.sf_max_speed);
 	_velocity.y=0.0f;
 #ifdef _DEBUG_
