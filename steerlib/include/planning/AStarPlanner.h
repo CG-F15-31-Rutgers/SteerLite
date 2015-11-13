@@ -96,10 +96,38 @@ namespace SteerLib
 			*/
 
 			bool computePath(std::vector<Util::Point>& agent_path, Util::Point start, Util::Point goal, SteerLib::GridDatabase2D * _gSpatialDatabase, bool append_to_path = false);
-		private:
-			SteerLib::GridDatabase2D * gSpatialDatabase;
-	};
+			//comparator to keep maping of points in order
+			struct comparePoints{
+				bool operator()(Util::Point a, Util::Point b) const{
+					if (a.x == b.x){
+						return a.z < b.z;
+					}else{
+						return a.x < b.x;
+					}
+				}
+			};
+			//comparator to keep maping of nodes in order
+			struct compareNode{
+				bool operator()(SteerLib::AStarPlannerNode a, SteerLib::AStarPlannerNode b) const{
+					if (a.point.x == b.point.x){
+						return a.point.z < b.point.z;
+					}else{
+						return a.point.x < b.point.x;
+					}
+				}
+			};
 
+			int getIndexFromPoint(Util::Point p);
+			void getSuccessors(Util::Point curr_node, Util::Point goal, std::map<Util::Point, SteerLib::AStarPlannerNode, comparePoints>& node_map, std::vector<Util::Point>& closed_list, std::vector<Util::Point>& open_list, std::map<SteerLib::AStarPlannerNode, SteerLib::AStarPlannerNode, compareNode>& came_from_map);
+			std::vector<Util::Point> getSuccessorPoints(Util::Point current_node_to_expand);
+			void addNodes(Util::Point curr_point, double cost, SteerLib::AStarPlannerNode previous_node, Util::Point goal, std::map<Util::Point, SteerLib::AStarPlannerNode, comparePoints>& node_map, std::vector<Util::Point>& closed_list, std::vector<Util::Point>& open_list, std::map<SteerLib::AStarPlannerNode, SteerLib::AStarPlannerNode, compareNode>& came_from_map);
+			double heuristics(Util::Point a, Util::Point b);
+			void reconstructPath(SteerLib::AStarPlannerNode curr_node, std::vector<Util::Point>& agent_path, std::map<SteerLib::AStarPlannerNode, SteerLib::AStarPlannerNode, compareNode> came_from_map, Util::Point start, std::vector<Util::Point> closed_list);
+			int findMinF(std::map<Util::Point, SteerLib::AStarPlannerNode, comparePoints> node_map, std::vector<Util::Point> open_list);
+
+	private:
+		SteerLib::GridDatabase2D * gSpatialDatabase;
+	};
 
 }
 
