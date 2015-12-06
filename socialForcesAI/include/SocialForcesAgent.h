@@ -20,6 +20,7 @@
 // #include "SimpleAgent.h"
 // #include "SocialForcesAIModule.h"
 #include "SocialForces_Parameters.h"
+#include "planning/AStarPlanner.h"
 
 
 /**
@@ -73,7 +74,7 @@ class SocialForcesAgent : public SteerLib::AgentInterface
         // void _doEulerStep(const Util::Vector & steeringDecisionForce, float dt);
 
         SocialForcesParameters _SocialForcesParams;
-
+	
         /**
              * \brief   Updates the three-dimensional position and three-dimensional velocity of this agent.
              */
@@ -88,7 +89,7 @@ class SocialForcesAgent : public SteerLib::AgentInterface
         Util::Vector _newVelocity;
         Util::Color _color;
         float _radius;
-
+		
         std::queue<SteerLib::AgentGoalInfo> _goalQueue;
 
         // Stuff specific to RVO
@@ -105,11 +106,12 @@ class SocialForcesAgent : public SteerLib::AgentInterface
     private:
         bool runLongTermPlanning2();
         bool runLongTermPlanning();
+		bool runAStar();
         bool reachedCurrentWaypoint();
         void updateMidTermPath();
         bool hasLineOfSightTo(Util::Point point);
 
-
+		
         void calcNextStep(float dt);
         Util::Vector calcRepulsionForce(float dt);
         Util::Vector calcProximityForce(float dt);
@@ -126,6 +128,8 @@ class SocialForcesAgent : public SteerLib::AgentInterface
         std::vector<Util::Point> _midTermPath;
         // holds the location of the best local target along the midtermpath
         Util::Point _currentLocalTarget;
+
+		SteerLib::AStarPlanner astar;
 
         friend class SocialForcesAIModule;
 

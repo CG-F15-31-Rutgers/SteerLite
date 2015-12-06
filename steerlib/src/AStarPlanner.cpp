@@ -18,7 +18,7 @@
 
 #define COLLISION_COST  1000
 #define GRID_STEP  1
-#define OBSTACLE_CLEARANCE 1
+#define OBSTACLE_CLEARANCE 0
 #define MIN(X,Y) ((X) < (Y) ? (X) : (Y))
 #define MAX(X,Y) ((X) > (Y) ? (X) : (Y))
 
@@ -26,8 +26,8 @@
 /*Use the below parameters to adjust output for each part of the assignment. 
 */
 #define USE_MANHATTAN_DISTANCE false
-#define TIE_BREAKER 0
-#define WEIGHT 1
+#define TIE_BREAKER 1
+#define WEIGHT 0
 #define DIAGNOLS false
 #define PRINT_RESULTS true
 

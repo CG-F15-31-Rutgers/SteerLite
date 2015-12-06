@@ -40,6 +40,12 @@ namespace SteerLib {
 		virtual bool overlaps(const Util::Point & p, float radius) { return Util::circleOverlapsCircle2D(_centerPosition,_radius,p, radius); }
 		virtual float computePenetration(const Util::Point & p, float radius) { return Util::computeCircleCirclePenetration2D(_centerPosition, _radius, p, radius); }
 		//@}
+		
+
+		Util::Point position() { return this->_centerPosition; }
+		float radius() { return this->_radius; }
+
+		
 
 	protected:
 		float _radius;
