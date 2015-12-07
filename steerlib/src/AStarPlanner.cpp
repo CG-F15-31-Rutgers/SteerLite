@@ -18,7 +18,7 @@
 
 #define COLLISION_COST  1000
 #define GRID_STEP  1
-#define OBSTACLE_CLEARANCE 0
+#define OBSTACLE_CLEARANCE 1
 #define MIN(X,Y) ((X) < (Y) ? (X) : (Y))
 #define MAX(X,Y) ((X) > (Y) ? (X) : (Y))
 

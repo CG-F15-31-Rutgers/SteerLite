@@ -140,7 +140,15 @@ void SocialForcesAgent::reset(const SteerLib::AgentInitialConditions & initialCo
 		if (testcase.compare(testcase.length() - ending.length(), ending.length(), ending) == 0)
 			testcase.erase(testcase.length() - ending.length(), ending.length());
 
-	std::cout << "Using testcase: " << testcase << std::endl;
+	if (testcase == "hallway-two-way" || testcase == "bottleneck-squeeze" || testcase == "crowd_crossing" || testcase == "hallway-four-way-rounded-roundabout") {
+
+		runAStar();
+	}
+	else
+	{
+		//runLongTermPlanning();
+		runAStar();
+	}
 
 	
 
@@ -174,15 +182,7 @@ void SocialForcesAgent::reset(const SteerLib::AgentInitialConditions & initialCo
 		}
 	}
 
-	if (testcase == "maze" || testcase == "office-complex"){
-
-			runAStar();
-		}
-		else
-		{
-		//runLongTermPlanning();
-			runAStar();
-	}
+	
 
 	// std::cout << "first waypoint: " << _waypoints.front() << " agents position: " << position() << std::endl;
 	/*
