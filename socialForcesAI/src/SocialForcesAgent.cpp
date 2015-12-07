@@ -142,11 +142,11 @@ void SocialForcesAgent::reset(const SteerLib::AgentInitialConditions & initialCo
 
 	if (testcase == "hallway-two-way" || testcase == "bottleneck-squeeze" || testcase == "crowd_crossing" || testcase == "hallway-four-way-rounded-roundabout") {
 
-		runAStar();
+		runLongTermPlanning();
 	}
 	else
 	{
-		//runLongTermPlanning();
+		
 		runAStar();
 	}
 
